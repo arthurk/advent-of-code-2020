@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func readInput() []int {
+func main() {
 	var lines []int
 	file, _ := os.Open("input.txt")
 	scanner := bufio.NewScanner(file)
@@ -24,14 +24,9 @@ func readInput() []int {
 		log.Fatal(err)
 	}
 	sort.Ints(lines)
-	return lines
-}
-
-func main() {
-	seatIDs := readInput()
-	fmt.Println("Part 1:", seatIDs[len(seatIDs)-1])
-	for i, v := range seatIDs {
-		if seatIDs[i+1]-v > 1 {
+	fmt.Println("Part 1:", lines[len(lines)-1])
+	for i, v := range lines {
+		if lines[i+1]-v > 1 {
 			fmt.Println("Part 2:", v+1)
 			break
 		}
