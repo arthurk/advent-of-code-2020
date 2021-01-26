@@ -31,7 +31,6 @@ func part1() {
 		if i == len(bag)-1 {
 			break
 		}
-
 		diff := bag[i+1] - bag[i]
 		diffCount[diff]++
 	}
@@ -42,6 +41,32 @@ func part1() {
 	fmt.Println("Part 1:", (diffCount[1]+1)*(diffCount[3]+1))
 }
 
+func nextValid(start int, bag []int) []int {
+	valid := []int{}
+	for i := start + 1; i < len(bag); i++ {
+		diff := bag[i] - bag[start]
+		// fmt.Printf("%d - %d = %d\n", bag[i], bag[start], diff)
+		if diff > 3 {
+			break
+		}
+		valid = append(valid, bag[i])
+	}
+	return valid
+}
+
 func main() {
-	part1()
+	// part1()
+	bag := readInput()
+	validMap := [][]int{}
+	for i := 0; i < len(bag)-1; i++ {
+		validMap = append(validMap, nextValid(i, bag))
+	}
+
+	// offset := 1
+	// valid := []int{}
+	for i := 0; i < len(validMap); i++ {
+		for j := 0; j < len(validMap[i]); j++ {
+			fmt.Println(validMap[i])
+		}
+	}
 }
